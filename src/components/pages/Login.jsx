@@ -1,0 +1,36 @@
+import { useState, useContext } from "react";
+import { UserContext } from "../UserProvider";
+
+export default function Login() {
+  const { user, setUser } = useContext(UserContext);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+
+  function handleSubmit(e) {
+    // console.log(e);
+    e.preventDefault();
+    setTimeout(() => setUser({ username: username, email: email }));
+    console.log(user);
+  }
+
+  return (
+    <div>
+      <h1>Login Heading</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="username"
+          value={username}
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="email"
+          value={email}
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input type="submit" value="Add User Info" />
+      </form>
+    </div>
+  );
+}
